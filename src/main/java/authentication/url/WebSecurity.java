@@ -1,6 +1,6 @@
 package authentication.url;
 
-import joj4j.auth.service.UserService;
+import authentication.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -14,7 +14,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import static joj4j.auth.url.JWTAuthenticationFilter.SIGN_UP_URL;
+import static authentication.url.JWTAuthenticationFilter.SIGN_UP_URL;
 
 @EnableWebSecurity
 @AllArgsConstructor
@@ -28,8 +28,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .addFilter(new joj4j.auth.url.JWTAuthenticationFilter(authenticationManager()))
-                .addFilter(new joj4j.auth.url.JWTAuthenticationFilter(authenticationManager()))
+                .addFilter(new JWTAuthenticationFilter(authenticationManager()))
+                .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
