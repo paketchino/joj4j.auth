@@ -1,4 +1,4 @@
-package joj4j.auth.model;
+package authentication.model;
 
 import lombok.*;
 

@@ -1,7 +1,7 @@
-package joj4j.auth.controller;
+package authentication.controller;
 
-import joj4j.auth.model.Person;
-import joj4j.auth.service.PersonService;
+import authentication.model.Person;
+import authentication.service.PersonService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,7 +32,8 @@ public class PersonController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Person> create(@RequestBody Person person) {
+    public ResponseEntity<Person>
+    create(@RequestBody Person person) {
         return new ResponseEntity<>(
                 this.personService.save(person),
                 HttpStatus.CREATED

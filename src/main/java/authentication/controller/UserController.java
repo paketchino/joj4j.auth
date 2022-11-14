@@ -1,7 +1,7 @@
-package joj4j.auth.controller;
+package authentication.controller;
 
-import joj4j.auth.model.Person;
-import joj4j.auth.service.UserService;
+import authentication.model.Person;
+import authentication.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -33,8 +33,6 @@ public class UserController {
 
     @PostMapping("/login")
     public void login() {
-
     }
-
 
 }

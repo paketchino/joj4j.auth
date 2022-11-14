@@ -1,7 +1,7 @@
-package joj4j.auth.service;
+package authentication.service;
 
-import joj4j.auth.model.Person;
-import joj4j.auth.repository.PersonRepository;
+import authentication.model.Person;
+import authentication.repository.PersonRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
