@@ -2,7 +2,6 @@ package authentication.controller;
 
 import authentication.model.Person;
 import authentication.service.PersonService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +11,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/person")
-@AllArgsConstructor
 public class PersonController {
-    @Autowired
+
     private final PersonService personService;
+
+    @Autowired
+    public PersonController(PersonService personService) {
+        this.personService = personService;
+    }
 
     @GetMapping("/")
     public List<Person> findAll() {

@@ -21,18 +21,15 @@ public class UserController {
     private BCryptPasswordEncoder passwordEncoder;
 
     @PostMapping("/sign-up")
-    public void signUp(@RequestBody Person person) {
+    public String signUp(@RequestBody Person person) {
         person.setPassword(passwordEncoder.encode(person.getPassword()));
         userService.save(person);
+        return "users/sign-up";
     }
 
     @GetMapping("/all")
     public List<Person> findAll() {
         return userService.findAll();
-    }
-
-    @PostMapping("/login")
-    public void login() {
     }
 
 }
