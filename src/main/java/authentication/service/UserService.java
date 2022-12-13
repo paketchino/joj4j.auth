@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static java.util.Collections.emptyList;
 
@@ -28,11 +29,11 @@ public class UserService implements UserDetailsService {
     }
 
     private Person findByUsername(String username) {
-        return personRepository.findAll().get(Integer.parseInt(username));
+        return personRepository.findPersonByLogin(username).orElseThrow(NoSuchElementException::new);
     }
 
-    public void save(Person person) {
-        personRepository.save(person);
+    public Person save(Person person) {
+        return personRepository.save(person);
     }
 
     public List<Person> findAll() {

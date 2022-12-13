@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -29,9 +30,9 @@ public class PersonController {
     public ResponseEntity<Person> findById(@PathVariable int id) {
         var person = this.personService.findById(id);
         return new ResponseEntity<Person>(
-                person.orElse(new Person()),
-                person.isPresent() ? HttpStatus.OK : HttpStatus.NOT_FOUND
-        );
+                person.orElseThrow(() ->
+                        new ResponseStatusException(HttpStatus.NOT_FOUND,
+                                "User by id not found")), HttpStatus.OK);
     }
 
     @PostMapping("/")
