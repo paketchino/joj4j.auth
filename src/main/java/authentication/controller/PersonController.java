@@ -44,7 +44,7 @@ public class PersonController {
         );
     }
 
-    @PutMapping("/")
+    @PatchMapping("/update")
     public ResponseEntity<Boolean> update(@RequestBody Person person) {
         var rsl = personService.findByIdIfExists(person.getId());
         if (rsl) {

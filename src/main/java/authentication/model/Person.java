@@ -22,4 +22,5 @@ public class Person {
 
     @NonNull
     private String password;
+    
 }
