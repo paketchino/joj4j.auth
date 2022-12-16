@@ -1,5 +1,6 @@
 package authentication.controller;
 
+import authentication.dto.PersonDTO;
 import authentication.model.Person;
 import authentication.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,10 +38,10 @@ public class PersonController {
 
     @PostMapping("/")
     public ResponseEntity<Person>
-    create(@RequestBody Person person) {
-        return new ResponseEntity<>(
-                this.personService.save(person),
-                HttpStatus.CREATED
+    create(@RequestBody PersonDTO personDTO) {
+        var person = new Person(personDTO.getLogin(), personDTO.getPassword());
+        Person per = this.personService.save(person);
+        return new ResponseEntity<>(per, HttpStatus.CREATED
         );
     }
 

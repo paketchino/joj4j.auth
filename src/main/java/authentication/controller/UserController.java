@@ -1,5 +1,6 @@
 package authentication.controller;
 
+import authentication.dto.PersonDTO;
 import authentication.model.Person;
 import authentication.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -36,16 +37,16 @@ public class UserController {
 
     @PostMapping("/sign-up")
     public ResponseEntity<Person>
-    signUp(@RequestBody Map<String, String> body) {
-        var login = body.get("login");
-        var password = body.get("password");
+    signUp(@RequestBody PersonDTO personDTO) {
+        var login = personDTO.getLogin();
+        var password = personDTO.getPassword();
         if (login == null || password == null) {
             throw new NullPointerException("Username and password mustn't be empty");
         }
         if (password.length() > 1 && password.length() < 6) {
             throw new IllegalStateException("Invalid password. Password length must be more than 6 characters.");
         }
-        var person = new Person(login, password);
+        var person = new Person(personDTO.getLogin(), personDTO.getPassword());
         person.setPassword(passwordEncoder.encode(person.getPassword()));
         Person per = this.userService.save(person);
         return new ResponseEntity<>(per, HttpStatus.CREATED);
